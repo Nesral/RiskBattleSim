@@ -6,38 +6,57 @@ using System.Threading.Tasks;
 
 namespace RiskBattleSim
 {
-    class Army
+    class Program
     {
-        private int units;
-        public Army(int u)
+        static void Main(string[] args)
         {
-            units = u;
-        }
-        public void attack(Army army, int attDiceNum, int defDiceNum, int repeats)
-        {
-            Random randy = new Random();
-
-            for (int i = 0; i < repeats; i++)
+            Boolean running = true,first = true;
+            Console.Write("enter the number of attackers >> ");
+            int att = Int32.Parse(Console.ReadLine());
+            Console.Write("enter the number of deffenders >> ");
+            int def = Int32.Parse(Console.ReadLine());
+            Army attackers = new Army(att);
+            Army deffenders = new Army(def);
+            while(running)
             {
-                int[] attDice = new int[attDiceNum];
-                int[] defDice = new int[defDiceNum];
-                for (int j = 0; j < attDice.Length; j++)
+                String s;
+                if(first)
                 {
-                    attDice[j] = (randy.Next() * 10) % 6;
+                    printCommands();
+                    first = false;
                 }
-                for (int j = 0; j < defDice.Length; j++)
+                Console.Write("enter command >> ");
+                s = Console.ReadLine();
+                string[] command = s.Split();
+                if (command[0].Equals("help"))
                 {
-                    defDice[j] = (randy.Next() * 10) % 6;
+                    Console.WriteLine("help entered");
                 }
-                foreach (int num in attDice)
+                else if (command[0].Equals("attack"))
                 {
-                    Console.WriteLine(num);
+                    Console.WriteLine("attack entered");
+                    if(command.Length==1)
+                    {
+
+                    }
+                    
                 }
-                foreach (int num in defDice)
+                else if (command[0].Equals("close"))
                 {
-                    Console.WriteLine(num);
+                    Console.WriteLine("end simulation");
+                    running = false;
                 }
+                Console.Write("enter command >>");
             }
+        }
+        static void printCommands()
+        {
+            Console.WriteLine("Comands are: \n" +
+                          "help ==> lists commands\n" +
+                          "attack  ==> attacks until either win or defeat"+
+                          "attack <int> attacks with that number of dice\n" +
+                          "attack <int> <int> attacks with that number of dice that many times\n" +
+                          "close ==> ends simulation\n");
         }
     }
 }
