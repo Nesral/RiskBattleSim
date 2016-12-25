@@ -35,6 +35,7 @@ namespace RiskBattleSim
                 else if (command[0].Equals("attack"))
                 {
                     Console.WriteLine("attack entered");
+                    
                 }
                 else if (command[0].Equals("close"))
                 {
@@ -51,24 +52,6 @@ namespace RiskBattleSim
                           "attack <int> attacks with that number of dice\n" +
                           "attack <int> <int> attacks with that number of dice that many times\n" +
                           "close ==> ends simulation\n");
-        }
-    }
-    class Army
-    {
-        private int units;
-        public Army(int u)
-        {
-            units = u;
-        }
-        public void attack(Army army, int attDiceNum, int defDiceNum, int repeats)
-        {
-            Random randy = new Random();
-
-            for(int i = 0; i <repeats; i++)
-            {
-                int[] attDice = new int[attDiceNum];
-                int[] defDice = new int[defDiceNum];
-            }
         }
     }
 }
